@@ -198,6 +198,15 @@ uint32_t progressive_render(uint32_t quality, int64_t bytes_read, uint8_t decode
       // clock_t finalTime = clock();
       // if (quality == 10000) printf("Total time: %.2lf\n", ((double)finalTime ) / CLOCKS_PER_SEC);
 
+      // to debug decode_over, render only when decode_over=true
+      if (!decode_over) {
+        printf("Decode is not over, got quality: %ld\n", quality);
+        SDL_UnlockMutex(mutex);
+        return quality + 1000;
+      } else {
+          printf("Decode is over, got quality: %ld\n", quality);
+      }
+
       flif_decoder_generate_preview(context);
 
       bool success = updateTextures(quality, bytes_read);

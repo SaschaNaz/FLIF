@@ -250,7 +250,7 @@ static int decodeThread(void * arg) {
     // set the callback function to render the partial (and final) decoded images
     flif_decoder_set_callback(d, &(progressive_render), NULL);  // the default is "no callback"; decode completely until quality/scale/size target is reached
     // do the first callback when at least 5.00% quality has been decoded
-    flif_decoder_set_first_callback_quality(d, 500);      // the default is to callback almost immediately
+    flif_decoder_set_first_callback_quality(d, 9);      // the default is to callback almost immediately
 #endif
     if (!flif_decoder_decode_file(d, argv[1])) {
         printf("Error: decoding failed\n");
